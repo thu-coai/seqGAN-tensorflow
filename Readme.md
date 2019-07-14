@@ -1,3 +1,8 @@
+[![Coverage Status](https://coveralls.io/repos/github/thu-coai/seqGAN-tensorflow/badge.svg?branch=master)](https://coveralls.io/github/thu-coai/LM-tensorflow?branch=master)
+[![Build Status](https://travis-ci.com/thu-coai/seqGAN-tensorflow.svg?branch=master)](https://travis-ci.com/thu-coai/LM-tensorflow)
+
+This is a model from cotk, click here to our [main repo](https://github.com/thu-coai/cotk).
+
 ## SeqGAN (TensorFlow)
 
 ![seqGAN-model](https://github.com/ChenChengKuan/SeqGAN_tensorflow/blob/master/misc/seqgan.png)
