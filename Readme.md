@@ -5,7 +5,7 @@ This is a model from cotk, click here to our [main repo](https://github.com/thu-
 
 ## SeqGAN (TensorFlow)
 
-![seqGAN-model](https://github.com/ChenChengKuan/SeqGAN_tensorflow/blob/master/misc/seqgan.png)
+![seqGAN-model](./images/seqgan.png)
 
 An implementation of seqGAN language generation model. Refer to the following paper for more details:
 
