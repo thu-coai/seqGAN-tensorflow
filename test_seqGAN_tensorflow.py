@@ -54,7 +54,7 @@ def modify_args(args):
 
 	args.name = 'test_seqGAN_tensorflow'
 	args.wvclass = 'Glove'
-	args.datapath = path + '/tests/dataloader/dummy_mscoco'
+	args.datapath = path + '/tests/dataloader/dummy_mscoco#MSCOCO'
 	args.sample = 2
 	args.gen_pre_epoch_num = 1
 	args.total_adv_batch = 1
