@@ -5,7 +5,7 @@ class rollout():
         #configuraiton setting
         self.sequence_length = sequence_length
         self.hidden_dim = args.eh_size
-        self.num_emb = data.vocab_size
+        self.num_emb = data.frequent_vocab_size
         self.emb_dim = args.embedding_size
         self.pred_seq = tf.placeholder(tf.int32, [args.batch_size, self.sequence_length], name="pred_seq_rollout")
         self.batch_size = args.batch_size

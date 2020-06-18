@@ -63,7 +63,7 @@ class Discriminator(object):
         self.data = data
 
         self.num_classes = args.num_classes
-        self.vocab_size = data.vocab_size
+        self.vocab_size = data.frequent_vocab_size
         self.filter_sizes = args.dis_filter_sizes
         self.num_filters = args.dis_num_filters
         self.embedding_size = args.embedding_size

@@ -19,7 +19,7 @@ class Generator(object):
            start_token: special token used to represent start of sentence
            initializer: initializer for LSTM kernel and output matrix
         """
-        self.num_emb = data.vocab_size
+        self.num_emb = data.frequent_vocab_size
         self.emb_dim = args.embedding_size
         self.hidden_dim = args.eh_size
         self.initializer = tf.random_normal_initializer(stddev=0.1)
