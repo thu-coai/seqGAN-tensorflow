@@ -189,7 +189,7 @@ class Generator(object):
             with tf.variable_scope("output"):
                 output_W = tf.get_variable("output_W", [self.hidden_dim, self.num_emb], "float32", self.initializer)
 
-            self.start_token = tf.constant([self.data.word2id["<go>"]]*self.args.batch_size, dtype=tf.int32)
+            self.start_token = tf.constant([self.data.go_id]*self.args.batch_size, dtype=tf.int32)
             with tf.variable_scope("lstm"):
                 for j in range(self.sequence_length):
                     #with tf.device("/cpu:0"):
@@ -231,7 +231,7 @@ class Generator(object):
     def pre_step_decoder(self, session, data, forward_only=False):
         sentence = []
         for s in data["sent"]:
-            sentence.append(np.concatenate((s,[self.data.word2id["<pad>"]] * (self.sequence_length-len(s))), 0))
+            sentence.append(np.concatenate((s,[self.data.pad_id] * (self.sequence_length-len(s))), 0))
         input_feed = {self.input_seqs_pre: sentence,
                       self.input_seqs_len: data['sent_length']}
         if forward_only:
@@ -302,7 +302,7 @@ class Generator(object):
             batched_data = data.get_next_batch("train")
 
     def test_process(self, sess, data):
-        metric = data.get_inference_metric(sample=self.args.sample)
+        metric = data.get_inference_metric(sample_in_bleu=self.args.sample)
         sample_num = int(len(data.data["test"]["sen"])/self.args.batch_size+1) if self.args.test_sample == None else self.args.test_sample
         for _ in range(sample_num):
             samples = sess.run(self.sample_word_list_reshape)
@@ -333,7 +333,7 @@ class Generator(object):
                     batched_data = data.get_next_batch("train")
                     samples = []
                     for s in batched_data["sent"]:
-                        samples.append(np.concatenate((s[1:],[self.data.word2id["<pad>"]] * (self.sequence_length-len(s[1:]))), 0))
+                        samples.append(np.concatenate((s[1:],[self.data.pad_id] * (self.sequence_length-len(s[1:]))), 0))
                     samples = np.array(samples)
                     length = np.shape(samples)[0]
                     if length < self.args.batch_size:

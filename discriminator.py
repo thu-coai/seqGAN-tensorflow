@@ -159,7 +159,7 @@ class Discriminator(object):
     def step_decoder(self, generator, session, data, forward_only=False):
         sentence = []
         for s in data["sent"]:
-            sentence.append(np.concatenate((s[1:],[self.data.word2id["<pad>"]] * (self.sequence_length-len(s[1:]))), 0))
+            sentence.append(np.concatenate((s[1:],[self.data.pad_id] * (self.sequence_length-len(s[1:]))), 0))
         neg_data = generator.generate(session)
 
         feed = {
