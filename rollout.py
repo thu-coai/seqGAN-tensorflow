@@ -5,7 +5,7 @@ class rollout():
         #configuraiton setting
         self.sequence_length = sequence_length
         self.hidden_dim = args.eh_size
-        self.num_emb = data.vocab_size
+        self.num_emb = data.frequent_vocab_size
         self.emb_dim = args.embedding_size
         self.pred_seq = tf.placeholder(tf.int32, [args.batch_size, self.sequence_length], name="pred_seq_rollout")
         self.batch_size = args.batch_size
@@ -29,7 +29,7 @@ class rollout():
                 output_W = tf.get_variable("output_W", [self.hidden_dim, self.num_emb], tf.float32)
 
             zero_state = lstm1.zero_state([self.batch_size], tf.float32)
-            start_token = tf.constant(data.word2id["<go>"], dtype=tf.int32, shape=[self.batch_size])
+            start_token = tf.constant(data.go_id, dtype=tf.int32, shape=[self.batch_size])
             for step in range(1, self.sequence_length):
                 #Get the token for i < step
                 sample_rollout_left = tf.reshape(self.pred_seq[:, :step], shape=[self.batch_size, step])

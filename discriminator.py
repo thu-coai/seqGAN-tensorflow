@@ -63,7 +63,7 @@ class Discriminator(object):
         self.data = data
 
         self.num_classes = args.num_classes
-        self.vocab_size = data.vocab_size
+        self.vocab_size = data.frequent_vocab_size
         self.filter_sizes = args.dis_filter_sizes
         self.num_filters = args.dis_num_filters
         self.embedding_size = args.embedding_size
@@ -159,7 +159,7 @@ class Discriminator(object):
     def step_decoder(self, generator, session, data, forward_only=False):
         sentence = []
         for s in data["sent"]:
-            sentence.append(np.concatenate((s[1:],[self.data.word2id["<pad>"]] * (self.sequence_length-len(s[1:]))), 0))
+            sentence.append(np.concatenate((s[1:],[self.data.pad_id] * (self.sequence_length-len(s[1:]))), 0))
         neg_data = generator.generate(session)
 
         feed = {
